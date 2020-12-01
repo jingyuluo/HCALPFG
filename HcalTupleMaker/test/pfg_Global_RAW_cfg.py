@@ -23,7 +23,7 @@ options.register('processEvents',
                  "Number of events to process")
 
 options.register('inputFiles',
-                 "root://cmsxrootd.fnal.gov//store/express/Commissioning2017/ExpressPhysics/FEVT/Express-v1/000/293/591/00000/F45D88B0-A234-E711-B36A-02163E01A6B2.root", # default value
+                 "file:/eos/uscms/store/user/lpcbril/MC_test/HFSim_FEVT/HFSim_Run3/SingleNeutrino_forHF_FEVT/191215_201235/0000/HFSimulation_Run3_FEVT_976.root",#"root://eoscms.cern.ch//eos/cms/store/group/dpg_hcal/comm_hcal/USC/USC_268238.root",#"root://cmsxrootd.fnal.gov//store/express/Commissioning2017/ExpressPhysics/FEVT/Express-v1/000/293/591/00000/F45D88B0-A234-E711-B36A-02163E01A6B2.root", # default value
                  VarParsing.VarParsing.multiplicity.list,
                  VarParsing.VarParsing.varType.string,
                  "Input files")
@@ -144,7 +144,7 @@ process.qie11Digis = process.hcalDigis.clone()
 # Specify Global Tag
 #------------------------------------------------------------------------------------
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff')
-process.GlobalTag.globaltag = '101X_dataRun2_HLT_v7'
+process.GlobalTag.globaltag = '106X_mcRun3_2023_realistic_v3'#'90X_dataRun2_HLT_v1' 
 print "GlobalTag = ", str(process.GlobalTag.globaltag).split("'")[1]
 print " "
 

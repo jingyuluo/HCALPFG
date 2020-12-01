@@ -16,7 +16,7 @@
 #    crab getoutput -d <CRAB-project-directory> [--jobids <comma-separated-list-of-jobs-and/or-job-ranges>]
 # -----------------------------------------------------------------------------------------------------------------------------
 from CRABClient.UserUtilities import config
-#from CRABClient.UserUtilities import getUsernameFromSiteDB
+from CRABClient.UserUtilities import getUsernameFromSiteDB
 
 
 # Select dataset to crab over
@@ -24,9 +24,7 @@ number = 0 # starting at 0
 
 # List of datasets
 datasetnames = [
-'/HFSim_Phase2/jingyu-SingleNeutrino_forHF_RAWSIM_phase2-c0f0d490f18971d2b16794dd48e59cb8/USER',
-#'/HFSim_Phase2/jingyu-SingleNeutrino_forHF_RAWSIM_PU10_phase2-087191e991a9fdaf18256a3e51d888f6/USER',
-#'/HFSim_Run3/jingyu-SingleNeutrino_forHF_FEVT-7993cd197b6322fa27f61dc5c977a715/USER',
+'/HFSim_Run3/jingyu-SingleNeutrino_forHF_FEVT-7993cd197b6322fa27f61dc5c977a715/USER',
 #'/NoBPTX/Commissioning2016-PromptReco-v1/RECO',
 #'/MinimumBias/Commissioning2016-PromptReco-v1/RECO',
 #'/HcalHPDNoise/Commissioning2016-PromptReco-v1/RECO',
@@ -46,7 +44,7 @@ datasetnames = [
 #storagepath = '/store/group/dpg_hcal/comm_hcal/Noise/2017/' # DO NOT USE
 
 # cmsRun file
-psetname = 'pfg_Global_RAW_Phase2_cfg.py'
+psetname = 'pfg_Global_RAW_cfg.py'
 
 # Output filename
 OutputFilename = 'results.root'
@@ -75,7 +73,7 @@ config = config()
 
 config.General.workArea        = "out_crab"
 config.General.instance = 'preprod'
-config.General.requestName     = 'HFSim_Phase2_PU175_Ntuple_fixed'#dataset[0]+'_'+dataset[1]+'_'+dataset[2]+timestamp
+config.General.requestName     = 'HFSim_Run3_Ntuple'#dataset[0]+'_'+dataset[1]+'_'+dataset[2]+timestamp
 config.General.transferOutputs = True
 config.General.transferLogs    = True
 
@@ -95,7 +93,7 @@ config.Data.unitsPerJob     = 20
 #config.Data.ignoreLocality   = True
 config.Data.outLFNDirBase    = '/store/group/lpcbril/MC_test/HFSim_Ntuple'  
 config.Data.publication      = False
-config.Data.outputDatasetTag = 'HFSim_Phase2_PU175_Ntuple_fixed'#dataset[1]+'_'+dataset[2]+timestamp
+config.Data.outputDatasetTag = 'HFSim_Run3_Ntuple'#dataset[1]+'_'+dataset[2]+timestamp
 #config.Data.lumiMask         = '/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions15/13TeV/Reprocessing/Cert_13TeV_16Dec2015ReReco_Collisions15_25ns_JSON.txt'
 #config.Data.runRange         = '254231-260627'
 #config.Data.runRange        = '260577-260578' #for test

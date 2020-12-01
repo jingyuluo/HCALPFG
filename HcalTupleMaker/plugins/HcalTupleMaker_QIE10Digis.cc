@@ -117,8 +117,8 @@ void HcalTupleMaker_QIE10Digis::produce(edm::Event& iEvent, const edm::EventSetu
     
   //
 
-  //edm::ESHandle<HcalDbService> conditions;
-  //iSetup.get<HcalDbRecord>().get(conditions);
+  edm::ESHandle<HcalDbService> conditions;
+  iSetup.get<HcalDbRecord>().get(conditions);
 
   edm::Handle<QIE10DigiCollection>  qie10Digis;
   iEvent.getByToken(qie10digisToken_, qie10Digis);
@@ -140,10 +140,10 @@ void HcalTupleMaker_QIE10Digis::produce(edm::Event& iEvent, const edm::EventSetu
       continue;        
     
 
-    //const HcalQIECoder* channelCoder = conditions -> getHcalCoder(hcaldetid);
-    //const HcalQIEShape* shape = conditions -> getHcalShape(channelCoder);
-    //HcalCoderDb coder(*channelCoder,*shape);
-    //CaloSamples cs; coder.adc2fC(qie10df,cs);
+    const HcalQIECoder* channelCoder = conditions -> getHcalCoder(hcaldetid);
+    const HcalQIEShape* shape = conditions -> getHcalShape(channelCoder);
+    HcalCoderDb coder(*channelCoder,*shape);
+    CaloSamples cs; coder.adc2fC(qie10df,cs);
         
     ieta   -> push_back ( hcaldetid.ieta()        );
     iphi   -> push_back ( hcaldetid.iphi()        );
@@ -181,8 +181,8 @@ void HcalTupleMaker_QIE10Digis::produce(edm::Event& iEvent, const edm::EventSetu
       (*soi      )[last_entry].push_back ( qie10df[its].soi()               ); // soi is a bool, but stored as an int
       (*ok       )[last_entry].push_back ( qie10df[its].ok()                ); // ok is a bool, but stored as an int
       (*adc      )[last_entry].push_back ( qie10df[its].adc()               );
-      (*fc       )[last_entry].push_back ( adc2fC_QIE10[qie10df[its].adc()] );
-      //(*fc       )[last_entry].push_back ( cs[its] );
+      //(*fc       )[last_entry].push_back ( qie10df[its].nominal_fC() );
+      (*fc       )[last_entry].push_back ( cs[its] );
       (*le_tdc   )[last_entry].push_back ( qie10df[its].le_tdc()            );
       (*te_tdc   )[last_entry].push_back ( qie10df[its].te_tdc()            );
       (*capid    )[last_entry].push_back ( qie10df[its].capid()             );
